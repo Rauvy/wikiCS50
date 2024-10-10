@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+
+{% block title %}
+    {{ entry }}
+{% endblock %}
+
+
+{% block body %}
+    {% if html_content %}
+        <h1>{{ entry }}</h1>
+        {{ html_content|safe }}
+        <a href="{% url 'edit_entry' entry=entry %}" class="btn btn-secondary">Edit Entry</a>
+    {% else %}
+        <h1>Entry Not Found</h1>
+        <p>The entry you are looking for does not exist in the encyclopedia. Please try searching for another term.</p>
+    {% endif %}
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+{% endblock %}
